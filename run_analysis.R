@@ -1,16 +1,16 @@
 ### QN 1 ####
-features <- read.table("~/BLSW/Coursera/Data Science Specialisation/Course 3/UCI HAR Dataset/features.txt", quote="\"", comment.char="")
-subject_train <- read.table("~/BLSW/Coursera/Data Science Specialisation/Course 3/UCI HAR Dataset/train/subject_train.txt", quote="\"", comment.char="")
-X_train <- read.table("~/BLSW/Coursera/Data Science Specialisation/Course 3/UCI HAR Dataset/train/X_train.txt", quote="\"", comment.char="")
-y_train <- read.table("~/BLSW/Coursera/Data Science Specialisation/Course 3/UCI HAR Dataset/train/y_train.txt", quote="\"", comment.char="")
+features <- read.table("~/features.txt", quote="\"", comment.char="")
+subject_train <- read.table("~/subject_train.txt", quote="\"", comment.char="")
+X_train <- read.table("~/X_train.txt", quote="\"", comment.char="")
+y_train <- read.table("~/y_train.txt", quote="\"", comment.char="")
 colnames(subject_train) <- c("subject")
 colnames(y_train) <- c("y")
 colnames(X_train) <- features$V2
 train <- cbind(subject_train,X_train,y_train)
 
-subject_test <- read.table("~/BLSW/Coursera/Data Science Specialisation/Course 3/UCI HAR Dataset/test/subject_test.txt", quote="\"", comment.char="")
-X_test <- read.table("~/BLSW/Coursera/Data Science Specialisation/Course 3/UCI HAR Dataset/test/X_test.txt", quote="\"", comment.char="")
-y_test <- read.table("~/BLSW/Coursera/Data Science Specialisation/Course 3/UCI HAR Dataset/test/y_test.txt", quote="\"", comment.char="")
+subject_test <- read.table("~/subject_test.txt", quote="\"", comment.char="")
+X_test <- read.table("~/X_test.txt", quote="\"", comment.char="")
+y_test <- read.table("~/y_test.txt", quote="\"", comment.char="")
 colnames(subject_test) <- c("subject")
 colnames(y_test) <- c("y")
 colnames(X_test) <- features$V2
@@ -28,7 +28,7 @@ colnames(data)[colnames(data) == 'data$subject'] <- 'subject'
 
 
 ## QN 3 ## 
-activity_labels <- read.table("~/BLSW/Coursera/Data Science Specialisation/Course 3/UCI HAR Dataset/activity_labels.txt", quote="\"", comment.char="")
+activity_labels <- read.table("~/activity_labels.txt", quote="\"", comment.char="")
 colnames(activity_labels) <- c('y', 'Activity')
 data <- merge(data,activity_labels)
 data <- subset(data, select=-c(y))
@@ -43,7 +43,8 @@ data1 <- data %>%
   summarize_all(mean)
 
 
-write.csv(data1,"~/BLSW/Coursera/Data Science Specialisation/Course 3/UCI HAR Dataset/final.txt")
+
+write.table(data1,"~/final.txt",row.names=FALSE)
 
 
 
